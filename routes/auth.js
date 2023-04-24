@@ -18,4 +18,4 @@ router.route("/resetPassword/:resetToken").put(resetPassword);
 // router.route("/invited/:_id").put(invited);
 // router.route("/users").get(Allusers);
 
-module.exports = router;
+module.exports = router; 

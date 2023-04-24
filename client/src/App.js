@@ -22,8 +22,9 @@ function App() {
     <Navbar/>
     <Routes>
           {/* <PrivateRoute exact path="/" element={<PrivateScreen/>}/> */}
-          <Route exact path="/" element={<Homepage/>}></Route>
-          <Route exact path="/login" element={<Loginpage/>}></Route>
+          {/* <Route exact path="/" element={<Homepage/>}></Route> */}
+          <Route exact path="/" element={<Loginpage/>}></Route>
+          <Route exact path="/home" element={<Homepage/>}></Route>
           {/* register */}
           <Route exact path="/register" element={<Register/>} ></Route>
           <Route exact path="/forgetPassword" element={<ForgetPassword/>}></Route>

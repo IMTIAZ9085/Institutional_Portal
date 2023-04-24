@@ -24,8 +24,20 @@ const UserSchema = new mongoose.Schema({
             select: false
       },
       enrollment:{
-            type: Number,
+            type: String,
             minLength:6
+      },
+       year:{
+            type: String,
+            minLength:1
+      },
+       stream:{
+            type: String,
+            minLength:1
+      },
+        section:{ 
+            type: String,
+            minLength:1
       },
       resetPasswordToken: String,
       resetPasswordExpire: Date

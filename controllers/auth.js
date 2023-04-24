@@ -8,7 +8,10 @@ exports.register = async (req, res, next) => {
             username,
             email,
             password,
-            enrollment
+            enrollment,
+            year,
+            stream,
+            section
       } = req.body;
 
       try {
@@ -16,11 +19,14 @@ exports.register = async (req, res, next) => {
                   username,
                   email,
                   password,
-                  enrollment
+                  enrollment,
+                  year,
+                  stream,
+                  section
             });
-
+ 
             sendToken(user, 201, res);
-            res.status(201).json("User Created Successfully");
+            // res.status(201).json("User Created Successfully");
 
       } catch (err) {
             res.status(404).json("User Does Created");
@@ -47,7 +53,7 @@ exports.login = async (req, res, next) => {
       try {
             const user = await User.findOne({
                   email: email
-            }).select("+password");
+            }).select("+password"); 
             if (!user) {
                   res.status(404).json({
                         success: false,
@@ -65,16 +71,16 @@ exports.login = async (req, res, next) => {
             }
 
             if (isMatch) sendToken(user, 200, res);
-            res.status(200).json({
-                  success: true,
-                  message: "Login Successful"
-            });
+            // res.status(200).json({
+            //       success: true,
+            //       message: "Login Successful"
+            // });
 
       } catch (e) {
             res.status(500).json({
                   success: false,
                   error: e
-            })
+            }) 
       }
 };
 
@@ -172,9 +178,12 @@ exports.resetPassword = async (req, res, next) => {
 const sendToken = (user, statusCode, res) => {
       const token = user.getSignedToken();
       res.status(statusCode).json({
+            userD:user,
             success: true,
             token
       });
+
+    
 }
 
 //my invitation request

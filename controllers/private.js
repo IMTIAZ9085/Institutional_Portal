@@ -4,4 +4,4 @@ exports.getPrivateData = (req, res, next) => {
             user: req.user
       });
       // console.log(`private route this is User mail is ${req.user.email}`);
-};
+}; 
