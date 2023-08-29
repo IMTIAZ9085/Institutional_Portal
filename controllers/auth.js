@@ -3,13 +3,16 @@ const sendEmail = require("../utils/sendEmail");
 const crypto = require('crypto');
 
 //REGISTER FUNCTION
-exports.register = async (req, res, next) => {
+exports.register = async (req, res,next) => {
       const {
             username,
             email,
             password,
             enrollment,
             year,
+            status,
+            passoutYear,
+            linkdin,
             stream,
             section
       } = req.body;
@@ -21,6 +24,9 @@ exports.register = async (req, res, next) => {
                   password,
                   enrollment,
                   year,
+                  status,
+                  passoutYear,
+                  linkdin,
                   stream,
                   section
             });
@@ -29,7 +35,7 @@ exports.register = async (req, res, next) => {
             // res.status(201).json("User Created Successfully");
 
       } catch (err) {
-            res.status(404).json("User Does Created");
+            res.status(404).json("User Does Not Created");
       }
 };
 
@@ -327,3 +333,53 @@ const sendToken = (user, statusCode, res) => {
 //             })
 //       }
 // };
+
+
+exports.findPassout = async (req,res) => {
+      try {
+                        const user = await User.find({
+                              status: "Passout"
+                        });
+                        res.send({ 
+                              user
+                        });
+                        if (!user) {
+                              res.status(404).json({
+                                    success: false,
+                                    error: "The user does not exist"
+                              });
+                              // if (user) console.log("user exist");
+            
+                        }
+                  } catch (e) {
+                        res.status(500).json({
+                              success: false,
+                              error: e
+                        })
+                  }
+};
+
+
+exports.findStudent = async (req,res) => {
+      try {
+                        const user = await User.find({
+                              status: "Student"
+                        });
+                        res.send({ 
+                              user
+                        });
+                        if (!user) {
+                              res.status(404).json({
+                                    success: false,
+                                    error: "The user does not exist"
+                              });
+                              // if (user) console.log("user exist");
+            
+                        }
+                  } catch (e) {
+                        res.status(500).json({
+                              success: false,
+                              error: e
+                        })
+                  }
+};

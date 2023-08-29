@@ -1,0 +1,41 @@
+.fixed_header {
+  width: 80%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-left: 7.3rem;
+}
+.fixed_header tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 200px;
+}
+.fixed_header thead tr {
+  display: block;
+}
+.fixed_header thead {
+  background: black;
+  color: #fff;
+}
+.fixed_header th,
+.fixed_header td {
+  padding: 5px;
+  text-align: left;
+  width: 500px;
+}
+
+
+.passout_community_div{
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+}
+
+.c-head{
+      color: midnightblue;
+      margin-left: 28rem;
+      margin-top: 2rem;
+}
+
+a{
+      text-decoration: none;
+}

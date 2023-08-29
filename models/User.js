@@ -11,11 +11,7 @@ const UserSchema = new mongoose.Schema({
       email: {
             type: String,
             require: [true, "Please provide the emailID"],
-            unique: true,
-            match: [
-                  /([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+/,
-                  "Please provide a valid email"
-            ]
+            unique: true
       },
       password: {
             type: String,
@@ -25,16 +21,25 @@ const UserSchema = new mongoose.Schema({
       },
       enrollment:{
             type: String,
-            minLength:6
       },
        year:{
             type: String,
             minLength:1
       },
+      status:{
+            type: String
+      }, 
+      passoutYear:{
+            type:Number
+      },
+      linkdin:{
+            type: String
+      },
        stream:{
             type: String,
             minLength:1
       },
+
         section:{ 
             type: String,
             minLength:1

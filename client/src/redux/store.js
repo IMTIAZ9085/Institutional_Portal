@@ -41,4 +41,8 @@ export const store = configureStore({
             }),
 });
 
+// export const store = configureStore({
+//       reducer: rootReducer
+// });
+
 export const persistor = persistStore(store);

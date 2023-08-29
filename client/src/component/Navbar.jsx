@@ -1,10 +1,9 @@
 import React from 'react'
 import "./Navbar.css";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,NavLink} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { removeData } from "../redux/userRedux";
 import { persistor } from "../redux/store";
-
 
 
 const Navbar = () => {
@@ -40,29 +39,38 @@ const Navbar = () => {
       <ul className="navbar-nav head-link">
       {!token &&
       <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/">Login</a>
+          <NavLink className="nav-link" aria-current="page" to="/">Login</NavLink>
+        </li> 
+      }
+      {
+        token && 
+      
+        <li className="nav-item">
+          <NavLink className="nav-link" aria-current="page" to="/home">Home</NavLink>
         </li>
       }
         <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/home">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/result">Result</a>
+          <NavLink className="nav-link" aria-current="page" to="/result">Result</NavLink>
         </li>
         {/* <li className="nav-item">
           <a className="nav-link" href="/">Dues</a>
         </li> */}
         <li className="nav-item">
-          <a className="nav-link" href="/Payment">Payment</a>
+          <NavLink className="nav-link" to="/Payment">Payment</NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/holyday">Holidays</a>
+          <NavLink className="nav-link" to="/holyday">Holidays</NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/hostle">Hostel</a>
+          <NavLink className="nav-link" to="/hostle">Hostel</NavLink>
         </li>
+        {token && 
         <li className="nav-item">
-          <a className="nav-link" href="/about">About</a>
+          <NavLink className="nav-link" to="/community">Community</NavLink>
+        </li>
+        }
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/about">About</NavLink>
         </li>
         {token &&
         <li className="nav-item">

@@ -1,14 +1,16 @@
 import {useState,useEffect,useContext} from 'react';
 import axios from 'axios';
 import {Link,useNavigate} from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch ,useSelector} from 'react-redux';
 import { login } from '../redux/apiCalls';
+import { loginStart, loginSuccess } from '../redux/userRedux';
 // import Navbar from '../components/DesignComp/Navbar';
 // import { AuthContext } from '../context/AuthContext.js'; 
 // import loginCall from '../context/apiCalls'; 
 
 
 const Loginpage = ({history}) => {
+      const errtype = useSelector((state) => console.log(state.user.isFetching));
       // const {user,dispatch} = useContext(AuthContext);
       // const {state,setState} = useContext(AuthContext);
       const dispatch = useDispatch();
@@ -16,7 +18,8 @@ const Loginpage = ({history}) => {
       const [Input, setInput] = useState({
             email:"", 
             password:""
-       }) 
+       }) ;
+      const [error, setError] = useState(true); 
       //  const {isFetching,error} = useSelector((state)=>state.user);
 
       //  useEffect(()=>{ 
@@ -25,7 +28,9 @@ const Loginpage = ({history}) => {
       //       }
       // },[navigate]);
 
-
+     useEffect(()=>{ 
+         
+     },[error])
 
       const handleUpdate=async(event)=>{
             const {name,value} = event.target;
@@ -46,13 +51,13 @@ const Loginpage = ({history}) => {
                   email:Input.email,
                   password:Input.password
             } 
-            console.log(userData);
+            // console.log(userData);
        
            try{
             // loginCall(userData.email,dispatch);
             // console.log(user);
             const {data} =await axios.post('api/auth/login',userData);
-            console.log("herer");
+            // console.log("here");
             console.log(data);
             // setState(data.userD); 
             // console.log(state);
@@ -65,12 +70,17 @@ const Loginpage = ({history}) => {
             // dispatch({type:"LOGIN_SUCCESS",payload:data.userD});
             // console.log(user);
             // console.log(data);
-
+            
             localStorage.setItem("authToken",data.token);
-            login(dispatch,userData);
+            dispatch(loginStart());
+            dispatch(loginSuccess(data.userD));
+            // login(dispatch,userData);
+            setError(false);
       // window.location.reload();
-
+      // if(error===false){
             navigate("/home");
+      // }
+           
       //      console.log(user); 
             //  navigate("/");
             // console.log(data);  
@@ -94,6 +104,7 @@ const Loginpage = ({history}) => {
       {/* <div className="main" style={{display: 'flex',flexDirection: 'row'}}> */}
            {/* <div className="login_ip2">
            </div> */}
+           {/* {error && <h3>The data is loading</h3>} */}
 
             <div className="login_ip" style={{display: 'flex',flexDirection: 'row'}}>
             <div className="container log-element">

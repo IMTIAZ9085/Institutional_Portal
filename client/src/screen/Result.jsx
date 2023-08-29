@@ -1,18 +1,25 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Result = () => {
    const navigate = useNavigate();
+   const [sem, setSem] = useState();
 
    const handleResultData = () => {
-       navigate('/result_data');
+    const semVal = sem;
+       navigate('/result_data',{state:{
+        semVal,
+   }})
 };
 
   return (
-    <div>
+    <div className="result-div" style={{marginTop:"3rem",marginBottom:"2rem",marginLeft:"35rem"}}>
       <p>SELECT YOUR SEMESTER</p>
-  <select name="sem-option">
+  <select
+  onChange={(e)=>{setSem(e.target.value)}}
+   name="sem-option">
+  <option>Select Semester</option>
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
@@ -22,7 +29,8 @@ const Result = () => {
   <option value="7">7</option>
   <option value="8">8</option>
 </select>
-<button onClick={handleResultData}>Submit</button>
+{/* <Link to="result_data" state={{semVal:4}}>click here</Link> */}
+<button style={{marginLeft:"1rem"}} onClick={handleResultData}>Submit</button>
 <br /><br />
     </div>
   )

@@ -14,7 +14,7 @@ connectDB();
 
 app.use(cors());
 app.use(express.urlencoded({extended: false}));
-
+ 
 
 
 app.use(express.json());
@@ -35,4 +35,4 @@ const server = app.listen(PORT, (req, res) => {
 process.on("unhandledRejection", (err, Promise) => {
       console.log(`Logged Error: ${err}`);
       server.close(() => process.exit(1));
-});
+});  

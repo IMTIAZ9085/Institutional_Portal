@@ -49,7 +49,7 @@ const About = () => {
    {/* 1st section right side data */}
    <div className="col-12 col-lg-7 rightside">
          <h4 className="head1">--Support in Any Language</h4>
-         <h1 className="main-title">Make Easy Your Daily Collage Events</h1>
+         <h1 className="main-title">Make Easy Your Daily College Events</h1>
   
                   <div className="row our-services-info">
              <div className="col-11 our-services-data">

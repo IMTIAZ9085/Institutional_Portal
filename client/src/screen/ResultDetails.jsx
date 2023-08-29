@@ -1,12 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { subject,subjectResult } from '../data';
 
 const ResultDetails = () => {
+  const user = useSelector((state) => state.user.currentUser);
+  const {state} = useLocation();
+  const [sem1,setSem1] = useState(null);
+  const [semNo,setSemNo] = useState(null);
+  const [cgpa,setCgpa] = useState(null);
+
+  // console.log(state);
+  useEffect(()=>{ 
+    // const sub = subject.filter((currVal)=> currVal.sem===num);
+    const num = parseInt(state.semVal);
+    const sub1 = subject.filter(obj => (obj.sem === num));
+    const subResult = subjectResult.filter(obj => (obj.sem === num));
+    // console.log(subResult);
+    const totalNo = subResult[0].sub1*subResult[0].sub1Credit + subResult[0].sub2*subResult[0].sub2Credit + subResult[0].sub3*subResult[0].sub3Credit + subResult[0].sub4*subResult[0].sub4Credit + subResult[0].sub5*subResult[0].sub5Credit + subResult[0].sub6*subResult[0].sub6Credit; 
+    const totalCredit = subResult[0].sub1Credit + subResult[0].sub2Credit + subResult[0].sub3Credit + subResult[0].sub4Credit + subResult[0].sub5Credit + subResult[0].sub6Credit; 
+    console.log(totalNo/totalCredit);
+    setCgpa({
+      total:totalNo,
+      totalC:totalCredit,
+      sgpa:totalNo/totalCredit
+    })
+    setSem1(sub1[0]);
+    setSemNo(subResult[0]);
+   
+},[]);
+
   return (
     <div className="container">
     <h3>STATEMENT OF GRADES</h3>
-    <p>NAME :</p> <h6>SK IMTIAZ ALI</h6>
-    <p>ENROLLMENT NUMMBER :</p> <h6>12020009029050</h6>
-    <p>SEMESTER :</p> <h6>5 th</h6>
+    <p>NAME :</p> <h6>{user.username}</h6>
+    <p>ENROLLMENT NUMMBER :</p> <h6>{user.enrollment}</h6>
+    <p>SEMESTER :</p> <h6>{state.semVal}</h6>
       <table class="table table-bordered">
   <thead>
     <tr>
@@ -19,46 +48,76 @@ const ResultDetails = () => {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">PCCS401</th>
-      <td>Theory Of Computation</td>
-      <td>O</td>
-      <td>10.0</td>
-      <td>4.0</td>
-      <td>40.0</td>
+  {
+    sem1 &&  <> 
+      <tr>
+      <th scope="row">{sem1.sub1Code}</th>
+      <td>{sem1.sub1}</td>
+      <td>{semNo.sub1>= 9 ? "O":(semNo.sub1>=7?"A":"B")}</td>
+      <td>{semNo.sub1}.0</td>
+      <td>{semNo.sub1Credit}.0</td>
+      <td>{semNo.sub1*semNo.sub1Credit}.0</td>
     </tr>
+
     <tr>
-      <th scope="row">PCCCS402</th>
-      <td>Computer Netowrks</td>
-      <td>O</td>
-      <td>10.0</td>
-      <td>3.0</td>
-      <td>30.0</td>
+      <th scope="row">{sem1.sub2Code}</th>
+      <td>{sem1.sub2}</td>
+      <td>{semNo.sub2>= 9 ? "O":(semNo.sub2>=7?"A":"B")}</td>
+      <td>{semNo.sub2}.0</td>
+      <td>{semNo.sub2Credit}.0</td>
+      <td>{semNo.sub2*semNo.sub2Credit}.0</td>
     </tr>
+
     <tr>
-      <th scope="row">PCCCS403</th>
-      <td>Database Management System</td>
-      <td>O</td>
-      <td>10.0</td>
-      <td>3.0</td>
-      <td>30.0</td>
+      <th scope="row">{sem1.sub3Code}</th>
+      <td>{sem1.sub3}</td>
+      <td>{semNo.sub3>= 9 ? "O":(semNo.sub3>=7?"A":"B")}</td>
+      <td>{semNo.sub3}.0</td>
+      <td>{semNo.sub3Credit}.0</td>
+      <td>{semNo.sub3*semNo.sub3Credit}.0</td>
     </tr>
+
     <tr>
-      <th scope="row">PCCCS404</th>
-      <td>Principles Of Management</td>
-      <td>O</td>
-      <td>10.0</td>
-      <td>2.0</td>
-      <td>20.0</td>
+      <th scope="row">{sem1.sub4Code}</th>
+      <td>{sem1.sub4}</td>
+      <td>{semNo.sub4>= 9 ? "O":(semNo.sub4>=7?"A":"B")}</td>
+      <td>{semNo.sub4}.0</td>
+      <td>{semNo.sub4Credit}.0</td>
+      <td>{semNo.sub4*semNo.sub4Credit}.0</td>
     </tr>
+
+    <tr>
+      <th scope="row">{sem1.sub5Code}</th>
+      <td>{sem1.sub5}</td>
+      <td>{semNo.sub5>= 9 ? "O":(semNo.sub5>=7?"A":"B")}</td>
+      <td>{semNo.sub5}.0</td>
+      <td>{semNo.sub5Credit}.0</td>
+      <td>{semNo.sub5*semNo.sub5Credit}.0</td>
+    </tr>
+
+    <tr>
+      <th scope="row">{sem1.sub6Code}</th>
+      <td>{sem1.sub6}</td>
+      <td>{semNo.sub6>= 9 ? "O":(semNo.sub6>=7?"A":"B")}</td>
+      <td>{semNo.sub6}.0</td>
+      <td>{semNo.sub6Credit}.0</td>
+      <td>{semNo.sub6*semNo.sub6Credit}.0</td>
+    </tr>
+
     <tr>
       <th scope="row"></th>
       <td></td>
       <td></td>
-      <td>TOTAL</td>
-      <td>29.0</td>
-      <td>284.0</td>
+      <td></td>
+      <td>{cgpa.totalC}.0</td>
+      <td>Total: {cgpa.total}.0</td>
     </tr>
+
+    </>
+    
+  }
+    
+   
   </tbody>
 </table>
 <br /> <br /> 
@@ -76,20 +135,21 @@ const ResultDetails = () => {
   <tbody>
     <tr>
       <th scope="row"></th>
-      <td>SGPA(ODD) SECOND YEAR FIRST SEMESTER</td>
+      <td>SGPA {user.year} YEAR {state.semVal} SEMESTER : 7.88</td>
       <td></td>
       <td></td>
     </tr>
     <tr>
       <th scope="row"></th>
-      <td>SGPA(EVEN) SECOND YEAR SECOND SEMESTER : 9.99</td>
+      {/* {cgpa.total && cgpa.totalC &&
+      <td>SGPA(EVEN) SECOND YEAR SECOND SEMESTER :{(cgpa.total/cgpa.totalC).toFixed(2)} </td>} */}
          <td></td>
       <td></td>
     </tr>
     <br /><br />
     <tr>
       <th scope="row"></th>
-      <td>STREAM :</td>
+      <td>STREAM : {user.stream}</td>
       <td>COMPUTER SCIENCE AND ENGINEERING</td>
     </tr>
   </tbody>
