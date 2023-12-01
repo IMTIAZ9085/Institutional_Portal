@@ -18,8 +18,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
     "nodemailer": "^6.8.0",
+    "otp-generator": "^4.0.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.2",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "twilio": "^4.19.0"
   }
 }

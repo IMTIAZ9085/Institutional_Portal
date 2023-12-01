@@ -5,6 +5,8 @@ import {Link,useNavigate} from 'react-router-dom';
 
 const Register = ({history}) => {
   const navigate = useNavigate();
+      const [flag,setFlag] = useState(false);
+      const [userOtp,setUserOTP] = useState();
       const [Input, setInput] = useState({
             name:"",
             email:"",
@@ -15,7 +17,7 @@ const Register = ({history}) => {
             passoutYear:"",
             linkdin:"",
             stream:"",
-            section:""
+            section:"",
        }) 
 
        useEffect(()=>{
@@ -35,7 +37,26 @@ const Register = ({history}) => {
         }
        })
        }
-      
+
+       const handleOtp=async(event)=>{
+            setUserOTP(event.target.value);
+            }
+
+       const getOTP = async(event)=>{
+            event.preventDefault();
+          setFlag(true);
+          const userData1 = {
+            email:Input.email
+          }
+          console.log(Input.email);
+          try{
+            const data =await axios.post("api/auth/signup",userData1);
+            console.log(data);
+          }catch(e){
+            console.log(e);
+          }
+       }
+
        const submitData=async(event)=>{
             event.preventDefault();
             // console.log(Input);
@@ -50,12 +71,13 @@ const Register = ({history}) => {
                   passoutYear:Input.passoutYear,
                   linkdin:Input.linkdin,
                   stream:Input.stream,
-                  section:Input.section
+                  section:Input.section,
+                  userOtp:userOtp
             }
       
            try{
            console.log("bf api");
-             const {data} =await axios.post("api/auth/register",userData);
+             const {data} =await axios.post("api/auth/signup_verify",userData);
             //  localStorage.setItem("authToken",data.token);
             //  navigate("/");
             // history.push("/");
@@ -65,10 +87,15 @@ const Register = ({history}) => {
             //       email:"",
             //       password:"",
             // })
- 
-            if(data){
-            alert('Successfully send data');
+          console.log(data.success);
+            if(data.success===true){
+            alert('User Created Successfully');
           navigate("/");      
+      }
+      if(data.success===false){
+        alert("OTP verification failed! Register Again");
+        navigate("/register");
+        document.location.reload(true);
       }
             
       }
@@ -77,6 +104,48 @@ const Register = ({history}) => {
             }
       
        } 
+      
+      //  const submitData=async(event)=>{
+      //       event.preventDefault();
+      //       // console.log(Input);
+      
+      //       const userData = {
+      //             username:Input.name,
+      //             email:Input.email,
+      //             password:Input.password,
+      //             enrollment:Input.enrollment,
+      //             year:Input.year,
+      //             status:Input.status,
+      //             passoutYear:Input.passoutYear,
+      //             linkdin:Input.linkdin,
+      //             stream:Input.stream,
+      //             section:Input.section
+      //       }
+      
+      //      try{
+      //      console.log("bf api");
+      //        const {data} =await axios.post("api/auth/register",userData);
+      //       //  localStorage.setItem("authToken",data.token);
+      //       //  navigate("/");
+      //       // history.push("/");
+      //       console.log(data);
+      //       // setInput({
+      //       //       name:"",
+      //       //       email:"",
+      //       //       password:"",
+      //       // })
+ 
+      //       if(data){
+      //       alert('Successfully send data');
+      //     navigate("/");      
+      // }
+            
+      // }
+      //       catch(e){
+      //             console.log(e);
+      //       }
+      
+      //  } 
 
       return (<>
              
@@ -103,14 +172,19 @@ const Register = ({history}) => {
             <input  className="ip_val" onChange={handleUpdate} name="linkdin" value={Input.linkdin} placeholder="Linkdin Profile Link" /> <br /> <br />
             </> } 
             {Input.status==="Student" &&  <>
-           
             <input  className="ip_val" onChange={handleUpdate} name="passoutYear" value={Input.passoutYear} placeholder="Passout Year" /> <br /> <br />
             <input  className="ip_val" onChange={handleUpdate} name="linkdin" value={Input.linkdin} placeholder="Linkdin Profile Link" /> <br /> <br />
             </> } 
+
+            {flag &&  <>
+            <input  className="ip_val" onChange={handleOtp} name="otp" value={userOtp} placeholder="Enter OTP" /> <br /> <br />
+            </> } 
+
             </div>
             </div>
             <div className="reg_submit">
-            <button id="ip_btn" className="btn btn-danger" onClick={submitData}>SIGNUP</button> <br /> <br/>
+            {  flag &&  <button id="ip_btn" className="btn btn-danger" onClick={submitData}>SIGNUP</button>}
+            {  (flag===false) &&  <button id="ip_btn" className="btn btn-danger" onClick={getOTP}>GET OTP</button>} <br /> <br/>
             <span>Already have an account ? <Link style={{textDecoration:"none"}} to="/login">Login</Link></span>
             </div>
             </div>

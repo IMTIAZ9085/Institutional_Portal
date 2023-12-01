@@ -1,9 +1,152 @@
 const User = require("../models/User");
-const sendEmail = require("../utils/sendEmail");
+const Verifieduser = require("../models/VerifiedUser");
+const sendMail = require("../utils/sendEmail");
 const crypto = require('crypto');
+const otpGenerator = require('otp-generator');
+
+const dotenv = require("dotenv");
+dotenv.config({
+      path: './config.env'
+});
+
+
+exports.Verified_user = async (req, res) => {
+      const {
+            email,
+            otp
+      } = req.body;
+      try {
+            const user = await Verifieduser.create({
+                  email,
+                  otp
+            });
+            res.status(201).json(user);
+      } catch (e) {
+            res.status(404).json(e);
+      }
+}
 
 //REGISTER FUNCTION
-exports.register = async (req, res,next) => {
+exports.SignUp = async (req, res, next) => {
+      const {
+            email
+      } = req.body;
+
+
+
+
+      try {
+            const otp = otpGenerator.generate(6, {
+                  upperCase: false,
+                  specialChars: false
+            });
+
+            // console.log(`this is user email ${user_email}`)
+            // const filter = {email : user_email};
+            // console.log(email);
+            // const update_value = {
+            //       $set : {
+            //          otp : otp
+            //       }
+            // };
+            const verified_user = await Verifieduser.findOne({
+                  email: email
+            });
+            verified_user.otp = otp;
+            verified_user.save();
+            // console.log(verified_user);
+            res.status(201).json({
+                  data: verified_user
+            });
+
+            const message = `
+             <h1>Please Verify Your Email</h1>
+             <p>Your OTP is ${otp}</p> <br/>
+             `;
+            sendMail({
+                  to: email,
+                  text: message
+            });
+
+            // const user = await User.create({
+            //       username,
+            //       email,
+            //       password,
+            //       enrollment,
+            //       year,
+            //       status,
+            //       passoutYear,
+            //       linkdin,
+            //       stream,
+            //       section
+            // });
+
+            // sendToken(user, 201, res);
+            // res.status(201).json("User Created Successfully");
+
+      } catch (err) {
+            res.status(403).json(err);
+      }
+};
+
+
+//REGISTER FUNCTION
+exports.Signup_verify = async (req, res, next) => {
+      const {
+            username,
+            email,
+            password,
+            enrollment,
+            year,
+            status,
+            passoutYear,
+            linkdin,
+            stream,
+            section,
+            userOtp
+      } = req.body;
+
+
+      try {
+
+            const verified_user = await Verifieduser.findOne({
+                  email: email
+            });
+            //  console.log("this is under verify signup ");
+            // console.log(verified_user);
+
+            if (verified_user.otp === userOtp) {
+                  const user = await User.create({
+                        username,
+                        email,
+                        password,
+                        enrollment,
+                        year,
+                        status,
+                        passoutYear,
+                        linkdin,
+                        stream,
+                        section
+                  });
+
+                  sendToken(user, 201, res);
+                  // res.status(201).json("User Created Successfully");
+            } else {
+                  res.status(201).json({
+                        success: "false",
+                        message: "Not a Verified User"
+                  });
+            }
+
+      } catch (err) {
+            res.status(404).json(err);
+      }
+};
+
+
+
+//REGISTER FUNCTION
+exports.register = async (req, res, next) => {
       const {
             username,
             email,
@@ -17,7 +160,23 @@ exports.register = async (req, res,next) => {
             section
       } = req.body;
 
+      const otp = otpGenerator.generate(6, {
+            upperCase: false,
+            specialChars: false
+      });
+
+      const message = `
+      <h1>Please Verify Your Email</h1>
+      <p>Your OTP is ${otp}</p> <br/>
+      `;
+
+
       try {
+            sendMail({
+                  to: email,
+                  text: message
+            });
+
             const user = await User.create({
                   username,
                   email,
@@ -30,7 +189,7 @@ exports.register = async (req, res,next) => {
                   stream,
                   section
             });
- 
+
             sendToken(user, 201, res);
             // res.status(201).json("User Created Successfully");
 
@@ -59,7 +218,7 @@ exports.login = async (req, res, next) => {
       try {
             const user = await User.findOne({
                   email: email
-            }).select("+password"); 
+            }).select("+password");
             if (!user) {
                   res.status(404).json({
                         success: false,
@@ -86,7 +245,7 @@ exports.login = async (req, res, next) => {
             res.status(500).json({
                   success: false,
                   error: e
-            }) 
+            })
       }
 };
 
@@ -184,12 +343,12 @@ exports.resetPassword = async (req, res, next) => {
 const sendToken = (user, statusCode, res) => {
       const token = user.getSignedToken();
       res.status(statusCode).json({
-            userD:user,
+            userD: user,
             success: true,
             token
       });
 
-    
+
 }
 
 //my invitation request
@@ -335,51 +494,51 @@ const sendToken = (user, statusCode, res) => {
 // };
 
 
-exports.findPassout = async (req,res) => {
+exports.findPassout = async (req, res) => {
       try {
-                        const user = await User.find({
-                              status: "Passout"
-                        });
-                        res.send({ 
-                              user
-                        });
-                        if (!user) {
-                              res.status(404).json({
-                                    success: false,
-                                    error: "The user does not exist"
-                              });
-                              // if (user) console.log("user exist");
-            
-                        }
-                  } catch (e) {
-                        res.status(500).json({
-                              success: false,
-                              error: e
-                        })
-                  }
+            const user = await User.find({
+                  status: "Passout"
+            });
+            res.send({
+                  user
+            });
+            if (!user) {
+                  res.status(404).json({
+                        success: false,
+                        error: "The user does not exist"
+                  });
+                  // if (user) console.log("user exist");
+
+            }
+      } catch (e) {
+            res.status(500).json({
+                  success: false,
+                  error: e
+            })
+      }
 };
 
 
-exports.findStudent = async (req,res) => {
+exports.findStudent = async (req, res) => {
       try {
-                        const user = await User.find({
-                              status: "Student"
-                        });
-                        res.send({ 
-                              user
-                        });
-                        if (!user) {
-                              res.status(404).json({
-                                    success: false,
-                                    error: "The user does not exist"
-                              });
-                              // if (user) console.log("user exist");
-            
-                        }
-                  } catch (e) {
-                        res.status(500).json({
-                              success: false,
-                              error: e
-                        })
-                  }
+            const user = await User.find({
+                  status: "Student"
+            });
+            res.send({
+                  user
+            });
+            if (!user) {
+                  res.status(404).json({
+                        success: false,
+                        error: "The user does not exist"
+                  });
+                  // if (user) console.log("user exist");
+
+            }
+      } catch (e) {
+            res.status(500).json({
+                  success: false,
+                  error: e
+            })
+      }
 };

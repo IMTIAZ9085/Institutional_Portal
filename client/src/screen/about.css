@@ -2,14 +2,22 @@
       /* color: #fff; */
       background-color: rgb(78, 95, 192);
       height:4.5rem;
-      width:15%;
+      width:35%;
       border-radius:2rem !important;
       font-size:1.2rem;
       cursor: pointer;
       margin-left: 5rem;
-      margin-top:6rem;
+      margin-top:-1rem;
 }
 
+#about-title{
+      color: #170970;
+      margin: 2rem 18rem;
+}
+
+#about-small-title{
+      margin-left: 55rem;
+}
 
 .learn:hover{
       border: 1px solid #6f5de7;
@@ -33,12 +41,15 @@ h4{
 
 .main-title{
   font-weight: bolder;
-  margin:0rem 1rem;
+  margin-top: 5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  /* margin:0rem 1rem; */
 
 }
 
 .our-services-data{
-      margin-top:4rem;
+      margin-top:2rem;
 
 }
 
@@ -59,7 +70,7 @@ h4{
 }
 
 .our-services-data p{
-      margin: 3rem 0;
+      margin: 1rem 0;
       text-align:justify;
 }
 

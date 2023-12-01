@@ -11,7 +11,7 @@ const Homepage = () => {
   const user = useSelector((state) => state.user.currentUser);
   const num = parseInt(user.year)*2;
   const num2 = num-1;
-// if(user==null){
+// if(user==null){ 
   // window.location.reload();
 // }
   useEffect(()=>{ 

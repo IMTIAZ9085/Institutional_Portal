@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(express.json());
 
-//error handler should last middleware
+//error handler should last middleware 
 // app.use(errorHandler);
 
 app.use('/api/auth', require("./routes/auth"));

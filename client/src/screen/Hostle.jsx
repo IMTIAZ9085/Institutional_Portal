@@ -16,7 +16,7 @@ const Hostle = () => {
            <h4 className="hostle-details-title">
            PAPER PLANE HOSTEL
            </h4>
-           <span>Rent : 20000</span>
+           <span style={{marginRight:"10px"}}>Rent : 20000</span>
            <p>Phone No <br/> 9832334527</p> 
            {/* <span>9832334527</span> */}
            <div className="add">

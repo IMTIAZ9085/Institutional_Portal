@@ -20,7 +20,7 @@ const Payment = () => {
 
         <h6>CURRENCY (IN RUPEE) :</h6>
         <h6>Amount</h6> 
-        <input type="number" />
+        <input type="number" value="70000" />
 
         <h6>Card Number</h6> 
         <input type="number" />

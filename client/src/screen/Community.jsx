@@ -34,7 +34,7 @@ const Community = ()=>{
   <tr>
     <th>NAME</th>
     <th>PASSOUT YEAR</th>
-    <th>LINKDIN</th>
+    <th>LINKEDIN</th>
   </tr>
 </thead>
 <tbody>
@@ -44,7 +44,7 @@ const Community = ()=>{
     <td>{student.passoutYear}</td>
     <td>
     <a href={student.linkdin}>
-    <button  class="btn btn-primary">linkdin</button></a></td> 
+    <button  class="btn btn-primary">linkedin</button></a></td> 
   </tr>;
  })
 }
@@ -59,7 +59,7 @@ const Community = ()=>{
   <tr>
     <th>NAME</th>
     <th>PASSOUT YEAR</th>
-    <th>LINKDIN</th>
+    <th>LINKEDIN</th>
   </tr>
 </thead>
 <tbody>
@@ -69,7 +69,7 @@ const Community = ()=>{
     <td>{student.passoutYear}</td>
     <td>
     <a href={student.linkdin}>
-    <button  class="btn btn-primary">linkdin</button></a></td> 
+    <button  class="btn btn-primary">linkedin</button></a></td> 
   </tr>;
  })
 }
