@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom';
 import Footer from './component/Footer';
 import Navbar from './component/Navbar';
 import Loginpage from './screen/Loginpage';
@@ -17,8 +17,14 @@ import Hostle from './screen/Hostle';
 import Community from './screen/Community';
 import Protected from './Protected';
 import { useEffect, useState } from 'react';
+import Transport from './screen/Transport';
+import { useSelector } from 'react-redux';
+import Chat from './screen/Chat';
+
 
 function App() {
+  const user = useSelector((state) => state.user.currentUser);
+
   return (
     <BrowserRouter>
     <div className="App">
@@ -37,15 +43,18 @@ function App() {
           <Route exact path="/holyday" element={<Holyday/>}/>
           <Route exact path="/Payment" element={<Payment/>}/>
           <Route exact path="/community" element={<Community/>}/>
+          <Route exact path="/transport" element={<Transport/>}/>
           <Route exact path="/about" element={<About/>}/>
           {/* <Route exact path="/invite" element={<Invite/>}></Route> */}
           <Route exact path="/result" element={<Result/>}/>
           <Route exact path="/hostle" element={<Hostle/>}/>
           <Route exact path="/result_data" element={<ResultDetails/>}/>
+          <Route exact path="/result_data" element={<ResultDetails/>}/>
           <Route  path="*" element={<NotFound/>}/>
+          <Route path="/chat" element={user ? <Chat /> : <Navigate to="/" />} />
           </Routes>
      <Footer/>
-    </div>
+    </div> 
     </BrowserRouter>
   );
 } 

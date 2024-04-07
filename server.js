@@ -2,19 +2,25 @@
 const dotenv = require("dotenv");
 dotenv.config({
       path: './config.env'
- }); 
- const cors = require("cors");
+});
+const cors = require("cors");
 const express = require('express');
 const app = express();
 const connectDB = require('./controllers/config/db');
+
+// import ChatRoute from './routes/ChatRoute.js';
+// import MessageRoute from './routes/MessageRoute.js';
+
 
 //connecting with database
 connectDB();
 
 
 app.use(cors());
-app.use(express.urlencoded({extended: false}));
- 
+app.use(express.urlencoded({
+      extended: false
+}));
+
 
 
 app.use(express.json());
@@ -25,14 +31,16 @@ app.use(express.json());
 app.use('/api/auth', require("./routes/auth"));
 app.use('/api/private', require("./routes/private"));
 // app.use('/api/event',require("./routes/event"));
+app.use('/api/chat', require("./routes/ChatRoute"));
+app.use('/api/message', require("./routes/MessageRoute"));
 
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, (req, res) => {
       console.log(`listening on PORT ${PORT}.....`);
 });
- 
+
 process.on("unhandledRejection", (err, Promise) => {
       console.log(`Logged Error: ${err}`);
       server.close(() => process.exit(1));
-});  
+});

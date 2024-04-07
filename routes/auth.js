@@ -10,7 +10,8 @@ const {
       findStudent,
       SignUp,
       Signup_verify,
-      Verified_user
+      Verified_user,
+      Finduser
       // invited, 
       // Allusers
 } = require("../controllers/auth");
@@ -25,6 +26,7 @@ router.route("/forgetPassword").post(forgetPassword);
 router.route("/resetPassword/:resetToken").put(resetPassword);
 router.route("/passout").get(findPassout);
 router.route("/student").get(findStudent);
+router.route("/findUser/:_id").get(Finduser);
 // router.route("/invited/:_id").put(invited);
 // router.route("/users").get(Allusers);
 

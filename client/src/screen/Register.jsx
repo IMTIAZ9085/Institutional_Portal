@@ -185,7 +185,7 @@ const Register = ({history}) => {
             <div className="reg_submit">
             {  flag &&  <button id="ip_btn" className="btn btn-danger" onClick={submitData}>SIGNUP</button>}
             {  (flag===false) &&  <button id="ip_btn" className="btn btn-danger" onClick={getOTP}>GET OTP</button>} <br /> <br/>
-            <span>Already have an account ? <Link style={{textDecoration:"none"}} to="/login">Login</Link></span>
+            <span>Already have an account ? <Link style={{textDecoration:"none"}} to="/">Login</Link></span>
             </div>
             </div>
 

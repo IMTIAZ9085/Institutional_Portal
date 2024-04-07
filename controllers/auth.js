@@ -467,31 +467,31 @@ const sendToken = (user, statusCode, res) => {
 
 
 
-// ///FIND A PARTICULAR USER
-// exports.Finduser = async (req, res) => {
+///FIND A PARTICULAR USER
+exports.Finduser = async (req, res) => {
 
-//       try {
-//             const user = await User.findOne({
-//                   email: req.params.email
-//             });
-//             res.send({ 
-//                   user
-//             });
-//             if (!user) {
-//                   res.status(404).json({
-//                         success: false,
-//                         error: "The user does not exist"
-//                   });
-//                   // if (user) console.log("user exist");
+      try {
+            const user = await User.findOne({
+                  _id: req.params._id
+            });
+            res.send({ 
+                  user
+            });
+            if (!user) {
+                  res.status(404).json({
+                        success: false,
+                        error: "The user does not exist"
+                  });
+                  // if (user) console.log("user exist");
 
-//             }
-//       } catch (e) {
-//             res.status(500).json({
-//                   success: false,
-//                   error: e
-//             })
-//       }
-// };
+            }
+      } catch (e) {
+            res.status(500).json({
+                  success: false,
+                  error: e
+            })
+      }
+};
 
 
 exports.findPassout = async (req, res) => {

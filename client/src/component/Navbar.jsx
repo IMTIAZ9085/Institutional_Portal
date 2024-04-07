@@ -63,12 +63,22 @@ const Navbar = () => {
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/hostle">Hostel</NavLink>
+        </li> 
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/transport">Transport</NavLink>
         </li>
         {token && 
         <li className="nav-item">
           <NavLink className="nav-link" to="/community">Community</NavLink>
         </li>
         }
+
+        {token && 
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/chat">Message</NavLink>
+        </li>
+        }
+        
         <li className="nav-item">
           <NavLink className="nav-link" to="/about">About</NavLink>
         </li>

@@ -29,7 +29,7 @@ console.log(result_arr);
   onChange={(e)=>{setSem(e.target.value)}}
    name="sem-option">
   <option>Select Semester</option>
-  {
+  { 
     result_arr.map(post => <option value={post}>{post}</option> )
   }
 
