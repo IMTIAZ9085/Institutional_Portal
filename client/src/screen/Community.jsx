@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import "./community.css";
 import { useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom';
 
 const Community = ()=>{
+  const navigate = useNavigate();
   const [passout,setPassout] =  useState(null);
   const [student,setStudent] =  useState(null);
+
+  const user = useSelector((state) => state.user.currentUser);
+  console.log(user);
 
   useEffect(()=>{
     const fetchData = async(req,res)=>{
@@ -25,6 +31,30 @@ const Community = ()=>{
     
   },[]);
 
+ async function handleCreateChat(val){
+    // e.preventDefault();
+    console.log(val);
+    console.log("here");
+    const data = {
+      senderId:user._id,
+      receiverId:val
+    };
+
+   try{
+    const res = await axios.post('/api/chat/newChat',data);
+    console.log(res);
+    if(res.data.length===0){
+      const res1 = await axios.post('/api/chat/',data);
+      console.log(res1);
+    }
+    navigate("/chat");
+ 
+   }catch(e){
+    console.log(e);
+   }
+
+  }
+ 
   return (
     <div className="main_community_div">
      <h2 className="c-head">PASSOUT STUDENTS</h2>
@@ -45,6 +75,8 @@ const Community = ()=>{
     <td>
     <a href={student.linkdin}>
     <button  class="btn btn-primary">linkedin</button></a></td> 
+    <td><button  class="btn btn-success" onClick={()=>handleCreateChat(student._id)}>Message</button></td>
+    
   </tr>;
  })
 }
@@ -70,6 +102,7 @@ const Community = ()=>{
     <td>
     <a href={student.linkdin}>
     <button  class="btn btn-primary">linkedin</button></a></td> 
+    <td><button  class="btn btn-success" onClick={()=>handleCreateChat(student._id)}>Message</button></td>
   </tr>;
  })
 }

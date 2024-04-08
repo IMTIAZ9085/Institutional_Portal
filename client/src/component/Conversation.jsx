@@ -6,7 +6,7 @@ import axios from "axios";
 const Conversation = ({ data, currentUser, online }) => {
 
   const [userData, setUserData] = useState(null)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   useEffect(()=> {
 

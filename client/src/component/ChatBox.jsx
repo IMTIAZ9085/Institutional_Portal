@@ -7,7 +7,7 @@ import { format } from "timeago.js";
 import axios from "axios";
 import InputEmoji from 'react-input-emoji'
 
-const ChatBox = ({ chat, currentUser}) => {
+const ChatBox = ({ chat, currentUser,setSendMessage,receieveMessage}) => {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -48,44 +48,47 @@ const ChatBox = ({ chat, currentUser}) => {
   }, [chat]);
 
 
-//   // Always scroll to last Message
-//   useEffect(()=> {
-//     scroll.current?.scrollIntoView({ behavior: "smooth" });
-//   },[messages])
+  // Always scroll to last Message
+  useEffect(()=> {
+    scroll.current?.scrollIntoView({ behavior: "smooth" });
+  },[messages])
 
 
 
   // Send Message
   const handleSend = async(e)=> {
-    e.preventDefault()
-//     const message = {
-//       senderId : currentUser,
-//       text: newMessage,
-//       chatId: chat._id,
-//   }
-//   const receiverId = chat.members.find((id)=>id!==currentUser);
-//   // send message to socket server
-// //   setSendMessage({...message, receiverId})
+    e.preventDefault();
+    if(newMessage!==''){
+    const message = {
+      senderId : currentUser,
+      text: newMessage,
+      chatId: chat._id,
+  }
+  const receiverId = chat.members.find((id)=>id!==currentUser);
+   // send message to socket server
+ setSendMessage({...message, receiverId});
 //   // send message to database
-//   try {
-// //     const { data } = await addMessage(message);
-// //     setMessages([...messages, data]);
-//     setNewMessage("");
-//   }
-//   catch
-//   {
-//     console.log("error")
-//   }
+  try {
+    const res = await axios.post('/api/message/',message);
+    console.log(res);
+    setMessages([...messages, res.data]);
+    setNewMessage("");
+  }
+  catch
+  {
+    console.log("error")
+  }
+}
 }
 
 // Receive Message from parent component
-// useEffect(()=> {
-//   console.log("Message Arrived: ", receivedMessage)
-//   if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
-//     setMessages([...messages, receivedMessage]);
-//   }
+useEffect(()=> {
+  console.log("Message Arrived: ", receieveMessage)
+  if (receieveMessage !== null && receieveMessage.chatId === chat._id) {
+    setMessages([...messages, receieveMessage]);
+  }
 
-// },[receivedMessage])
+},[receieveMessage])
 
 
 
@@ -131,7 +134,7 @@ const ChatBox = ({ chat, currentUser}) => {
                       message.senderId === currentUser
                         ? "message own"
                         : "message"
-                    }
+                    } 
                   >
                     <span >{message.text}</span>{" "}
                     <span >{format(message.createdAt)}</span>
@@ -146,7 +149,7 @@ const ChatBox = ({ chat, currentUser}) => {
                 value={newMessage}
                 onChange={handleChange}
               />
-              <div style={{ height:"30px",fontWeight:"bold",backgroundColor:"green",color:"white"}} className="send-button button" onClick = {handleSend}>Send</div>
+              <div style={{ height:"30px",cursor:"pointer", borderRadius:"10px",fontWeight:"bold",backgroundColor:"green",color:"white"}} className="send-button button" onClick = {handleSend}>Send</div>
               <input
                 type="file"
                 name=""
