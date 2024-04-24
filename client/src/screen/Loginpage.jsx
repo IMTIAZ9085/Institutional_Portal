@@ -124,7 +124,7 @@ const Loginpage = ({history}) => {
 
             <span>Don't have an account ? <Link style={{textDecoration:"none"}} to="/register">Register</Link></span>
             <br/>
-            <span>Forget Password ? <Link style={{textDecoration:"none"}} to="/forgetPassword">Forget Password</Link></span>
+            {/* <span>Forget Password ? <Link style={{textDecoration:"none"}} to="/forgetPassword">Forget Password</Link></span> */}
            
            
             {/* <span>Don't have an account ? Register</span>

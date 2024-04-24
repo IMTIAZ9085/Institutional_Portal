@@ -20,9 +20,10 @@
       
       footer{
             padding:0.5rem 0;
-            background-color:#182334;
+            background-color:#01070f;
             color: #fff;
-            height:24rem;
+            height:27rem;
+            margin-top: 7px;
             /* font-size: 5rem; */
       }
       

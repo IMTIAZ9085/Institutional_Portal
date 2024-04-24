@@ -29,9 +29,9 @@ const Navbar = () => {
 
   return (
     <>
-    <nav className="navbar navbar-expand-lg" style={{backgroundColor: '#659DBD',fontSize: '1.2rem'}}>
+    <nav className="navbar navbar-expand-lg" style={{backgroundColor: '#7851A9',fontSize: '1.4rem'}}>
   <div className="container-fluid">
-    <a className="navbar-brand" href="/home" style={{fontSize:"1.4rem",fontWeight:"bold"}}><i class="fa-solid fa-building-columns"></i>__IP__<i class="fa-solid fa-building-columns"></i></a>
+    <a className="navbar-brand" href="/home" style={{fontSize:"1.4rem",fontWeight:"bold",color:"white"}}><i class="fa-solid fa-building-columns"></i>__IP__<i class="fa-solid fa-building-columns"></i></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
