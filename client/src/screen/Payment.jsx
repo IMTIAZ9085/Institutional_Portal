@@ -27,6 +27,7 @@ const Payment = () => {
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
+      alert("dskjns");
       return;
     }
 

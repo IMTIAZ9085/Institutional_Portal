@@ -65,6 +65,7 @@ const Community = ()=>{
     <th>NAME</th>
     <th>PASSOUT YEAR</th>
     <th>LINKEDIN</th>
+    <th>CONTACT</th>
   </tr>
 </thead>
 <tbody>
@@ -92,6 +93,7 @@ const Community = ()=>{
     <th>NAME</th>
     <th>PASSOUT YEAR</th>
     <th>LINKEDIN</th>
+    <th>CONTACT</th>
   </tr>
 </thead>
 <tbody>

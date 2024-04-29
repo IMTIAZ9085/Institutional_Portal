@@ -15,7 +15,7 @@ import NotFound from './component/NotFound';
 import ResultDetails from './screen/ResultDetails';
 import Hostle from './screen/Hostle';
 import Community from './screen/Community';
-import Protected from './Protected';
+import Protected from './Protected'; 
 import { useEffect, useState } from 'react';
 import Transport from './screen/Transport';
 import { useSelector } from 'react-redux';

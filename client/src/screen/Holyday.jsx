@@ -16,74 +16,74 @@ const Holyday = () => {
   <tbody>
     <tr>
       <th scope="row">New Year’s Day</th>
-      <td>01.01.2022</td>
+      <td>01.01.2024</td>
       <td>SATURDAY</td>
       <td>1</td>
     </tr>
     <tr>
       <th scope="row">Birthdays of Netaji Subash</th>
-      <td>05.03.2022</td>
+      <td>23.01.2024</td>
       <td>MONDAY</td>
       <td>1</td>
     </tr>
     <tr>
     <th scope="row">Republic Day</th>
-      <td>25.0.2022</td>
-      <td>SUNDAY</td>
+      <td>26.01.2024</td>
+      <td>TUESDAY</td>
       <td>1</td>
     </tr>
     <tr>
-    <th scope="row">Birthdays of Netaji Subash</th>
-      <td>05.03.2022</td>
+    <th scope="row">Eid-Ul-Azha</th>
+      <td>05.03.2024</td>
       <td>WEDNESDAY</td>
       <td>1</td>
     </tr>
     <tr>
     <th scope="row">Raksha Bandhan (Rakhi)</th>
-      <td>2.3.2022</td>
+      <td>02.03.2024</td>
       <td>FRIDAY</td>
       <td>1</td>
     </tr>
     <tr>
     <th scope="row">Janmashtami</th>
-      <td>15.03.2022</td>
+      <td>15.03.2024</td>
       <td>SUNDAY</td>
       <td>1</td>
     </tr>
     <tr>
     <th scope="row">Durga Puja</th>
-      <td>5.10.2022</td>
+      <td>05.10.2024</td>
       <td>MONDAY</td>
       <td>5</td>
     </tr>
     <tr>
     <th scope="row">Eid-ul-fitr</th>
-      <td>25.03.2022</td>
+      <td>25.03.2024</td>
       <td>THURSDAY</td>
       <td>2</td>
     </tr><tr>
     <th scope="row">Eid-ul-azha</th>
-      <td>05.03.2022</td>
+      <td>05.03.2024</td>
       <td>SATURDAY</td>
       <td>2</td>
     </tr><tr>
     <th scope="row">Dussehra</th>
-      <td>15.12.2022</td>
+      <td>15.12.2024</td>
       <td>TUESDAY</td>
       <td>1</td>
     </tr><tr>
     <th scope="row">Diwali</th>
-      <td>07.10.2022</td>
+      <td>07.10.2024</td>
       <td>SATURDAY</td>
       <td>2</td>
     </tr><tr>
     <th scope="row">Chirstmas</th>
-      <td>25.12.2022</td>
+      <td>25.12.2024</td>
       <td>FRIDAY</td>
       <td>1</td>
     </tr><tr>
     <th scope="row">Guru Nanak Jayanti</th>
-      <td>05.03.2022</td>
+      <td>05.03.2024</td>
       <td>SATURDAY</td>
       <td>1</td>
     </tr>

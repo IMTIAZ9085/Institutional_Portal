@@ -18,7 +18,7 @@ const Hostle = () => {
            <h4 className="hostle-details-title">
            PAPER PLANE HOSTEL
            </h4>
-           <span >Rent : 20000</span>
+           <span >Rent : 5000</span>
            <p>Phone No : 9832334527</p> 
            {/* <span>9832334527</span> */}
            <div className="add" style={{marginTop:'1.2rem'}}>
@@ -36,7 +36,7 @@ const Hostle = () => {
            <h4 className="hostle-details-title">
            SHREE SHAILA PG FOR LADIES
            </h4>
-           <span>Rent : 1000</span>
+           <span>Rent : 3000</span>
            <p>Phone No : 7032334527</p> 
            <div className="add">
            <p>Address: Baligori,NewTown,Kolkata</p>
@@ -50,7 +50,7 @@ const Hostle = () => {
            <h4 className="hostle-details-title">
            WHITEFIELD HOSTEL
            </h4>
-           <span >Rent : 20000</span>
+           <span >Rent : 6000</span>
            <p>Phone No : 9832334527</p> 
            {/* <span>9832334527</span> */}
            <div className="add" style={{marginTop:'1.2rem'}}>
@@ -64,7 +64,7 @@ const Hostle = () => {
            <h4 className="hostle-details-title">
            ANIK COASTAL
            </h4>
-           <span>Rent : 100</span>
+           <span>Rent : 4100</span>
            <p>Phone No : 9032334527</p> 
            <div className="add">
            <p>Address: Baligori,NewTown,Kolkata</p>
@@ -77,7 +77,7 @@ const Hostle = () => {
            <h4 className="hostle-details-title">
            JONOKALYAN PG
            </h4>
-           <span>Rent : 100</span>
+           <span>Rent : 4300</span>
            <p>Phone No : 8236734527</p> 
            <div className="add">
            <p>Address: Baligori,NewTown,Kolkata</p>
@@ -87,11 +87,11 @@ const Hostle = () => {
 
 
          <div className="hostle-details" style={{marginTop:'-15rem'}}>
-         <img style={{height: '40%', width: '100%',borderRadius:10}} src="https://housing-images.n7net.in/01c16c28/27cff8ef4e61188aef5ceb76ab65dfd8/v0/large/3_bhk_independent_house-for-sale-kengeri_satellite_town-Bangalore-living_room.jpg" alt="pg4" />
+         <img style={{height: '40%', width: '100%'}} src="https://res.cloudinary.com/stanza-living/image/upload/f_auto,q_auto,w_600/e_improve/e_sharpen:10/e_saturation:10/v1587114876/Website/CMS-Uploads/pyo0icozf0zq6z2yzd8z.jpg" alt="pg4" />
            <h4 className="hostle-details-title">
-           JONOKALYAN PG
+           MANNAT PG
            </h4>
-           <span>Rent : 100</span>
+           <span>Rent : 5500</span>
            <p>Phone No : 8236734527</p> 
            <div className="add">
            <p>Address: Baligori,NewTown,Kolkata</p>

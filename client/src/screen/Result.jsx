@@ -8,8 +8,8 @@ const Result = () => {
    const [sem, setSem] = useState();
    const user = useSelector((state) => state.user.currentUser);
 
-  //  const year = parseInt(user.year, 10);
-   const year = 3;
+   const year = parseInt(user.year, 10);
+  //  const year = 3;
 
    const handleResultData = () => {
     const semVal = sem;
@@ -19,7 +19,7 @@ const Result = () => {
 };
 
 const arr = [1,2,3,4,5,6,7,8];
-const result_arr = arr.filter(word => word <= year*2 -2);
+const result_arr = arr.filter((word) => word <= year*2 -2);
 console.log(result_arr);
 
   return (
